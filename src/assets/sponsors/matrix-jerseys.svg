@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 220" fill="none">
+  <defs>
+    <linearGradient id="jerseyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141915"/>
+      <stop offset="50%" stop-color="#0A0F0C"/>
+      <stop offset="100%" stop-color="#050806"/>
+    </linearGradient>
+    <linearGradient id="matrixGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4ADE80"/>
+      <stop offset="50%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#15803D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left: Stylized Matrix Jersey Silhouette -->
+  <g transform="translate(65, 30)">
+    <!-- Base jersey silhouette -->
+    <path d="M40,15 L15,45 L32,65 L48,50 L48,140 L102,140 L102,50 L118,65 L135,45 L110,15 C95,28 55,28 40,15 Z" fill="url(#jerseyGrad)" stroke="#22C55E" stroke-width="2.5"/>
+    
+    <!-- Neon green matrix stripes/piping -->
+    <path d="M75,26 L75,140" stroke="#4ADE80" stroke-width="2" stroke-dasharray="3,3"/>
+    <path d="M50,15 L50,140" stroke="#22C55E" stroke-width="1.5" opacity="0.6"/>
+    <path d="M100,15 L100,140" stroke="#22C55E" stroke-width="1.5" opacity="0.6"/>
+
+    <!-- Chest Typography: ROCKIES -->
+    <text x="75" y="65" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="11" fill="#4ADE80" text-anchor="middle" letter-spacing="1">
+      ROCKIES
+    </text>
+    <!-- CR Monogram -->
+    <text x="75" y="85" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14" fill="#FFFFFF" text-anchor="middle">
+      CR
+    </text>
+    <!-- Matrix sublabel -->
+    <text x="75" y="105" font-family="monospace" font-weight="700" font-size="8" fill="#4ADE80" text-anchor="middle" letter-spacing="1">
+      MATRIX
+    </text>
+  </g>
+
+  <!-- Right: MATRIX JERSEYS Brand Text & Matrix Code Effect -->
+  <g transform="translate(230, 80)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="#22C55E" letter-spacing="4">
+      MATRIX
+    </text>
+    <text x="0" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="28" fill="currentColor" letter-spacing="3">
+      JERSEYS
+    </text>
+    <text x="0" y="70" font-family="monospace" font-weight="600" font-size="12" fill="#4ADE80" letter-spacing="1.5">
+      // OFFICIAL KIT & APPAREL
+    </text>
+    <text x="0" y="90" font-family="monospace" font-weight="500" font-size="10" fill="currentColor" opacity="0.65">
+      Welcome to the Real World • Team Kit
+    </text>
+  </g>
+</svg>

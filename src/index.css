@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Unique Light Orange & Warm Amber Color Grading */
+    --bg-primary: #0c0a09;
+    --bg-secondary: #17120e;
+    --bg-card: rgba(24, 18, 14, 0.85);
+    --border-color: rgba(249, 115, 22, 0.18);
+    --border-highlight: rgba(251, 146, 60, 0.45);
+    --text-primary: #fffaf5;
+    --text-secondary: #a8a29e;
+    --accent: #f97316;
+    --accent-orange: #fb923c;
+    --accent-amber: #f59e0b;
+    --accent-gold: #f59e0b;
+    --accent-peach: #fed7aa;
+    --accent-glow: rgba(249, 115, 22, 0.3);
+  }
+
+  /* Light Mode - Soft Apricot Alabaster & Warm Terracotta */
+  .theme-light {
+    --bg-primary: #fffaf5;
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --border-color: rgba(234, 88, 12, 0.14);
+    --border-highlight: rgba(249, 115, 22, 0.35);
+    --text-primary: #1c1917;
+    --text-secondary: #44403c;
+    --accent: #ea580c;
+    --accent-orange: #f97316;
+    --accent-amber: #d97706;
+    --accent-gold: #b45309;
+    --accent-peach: #fed7aa;
+    --accent-glow: rgba(234, 88, 12, 0.2);
+  }
+
+  /* Eye Protect Mode - Velvet Honey Sand & Warm Espresso */
+  .theme-eye-protect {
+    --bg-primary: #faf2e6;
+    --bg-secondary: #fffaf2;
+    --bg-card: rgba(255, 250, 242, 0.96);
+    --border-color: rgba(194, 65, 12, 0.16);
+    --border-highlight: rgba(217, 119, 6, 0.35);
+    --text-primary: #2b1706;
+    --text-secondary: #5c4b3f;
+    --accent: #c2410c;
+    --accent-orange: #ea580c;
+    --accent-amber: #b45309;
+    --accent-gold: #92400e;
+    --accent-peach: #ffedd5;
+    --accent-glow: rgba(194, 65, 12, 0.2);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-x: hidden;
+  }
+}
+
+/* Universal Pop-up Button Effect */
+.btn-popup {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background-color 0.2s ease, border-color 0.2s ease;
+  will-change: transform, box-shadow;
+}
+
+.btn-popup:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+.btn-popup:active {
+  transform: translateY(1px) scale(0.96);
+}
+
+/* Glassmorphism & Bento Glows */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}
+
+.glow-orange {
+  box-shadow: 0 0 35px -5px rgba(249, 115, 22, 0.35);
+}
+
+.glow-amber {
+  box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.35);
+}
+
+.glow-peach {
+  box-shadow: 0 0 35px -5px rgba(251, 146, 60, 0.35);
+}
+
+/* RIGHT TO LEFT (RTL) MARQUEE ANIMATION as explicitly requested */
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 28s linear infinite;
+}
+
+.animate-marquee-rtl:hover {
+  animation-play-state: paused;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(249, 115, 22, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.45);
+}
+
+.glow-aurora {
+  box-shadow: 0 0 50px -8px rgba(249, 115, 22, 0.38);
+}
+
+/* Specular Card Top Highlight */
+.card-specular {
+  position: relative;
+}
+
+.card-specular::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-highlight, rgba(251, 146, 60, 0.5)), transparent);
+  pointer-events: none;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Subtle background grid with responsive contrast */
+.tech-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(249, 115, 22, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(249, 115, 22, 0.05) 1px, transparent 1px);
+}
+
+.theme-light .tech-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(234, 88, 12, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 88, 12, 0.05) 1px, transparent 1px);
+}
+
+.theme-eye-protect .tech-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(194, 65, 12, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(194, 65, 12, 0.06) 1px, transparent 1px);
+}

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 220" fill="none">
+  <!-- Top Center: Green ACI Circular Seal -->
+  <g transform="translate(230, 60)">
+    <!-- Green circle -->
+    <circle r="48" fill="#009A44"/>
+    
+    <!-- White ACI text -->
+    <text x="0" y="-8" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">
+      ACI
+    </text>
+
+    <!-- White Wave lines in lower half of circle -->
+    <path d="M-36,12 C-20,4 -10,18 6,12 C18,7 28,15 36,12" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M-32,22 C-18,14 -8,28 8,22 C20,17 26,24 32,22" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Middle: Bold ACI Motors Typography -->
+  <g transform="translate(230, 155)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-style="italic" font-size="46" fill="currentColor" text-anchor="middle" letter-spacing="1">
+      ACI Motors
+    </text>
+  </g>
+
+  <!-- Tagline: Bringing Motion to Life -->
+  <g transform="translate(230, 195)">
+    <text x="0" y="0" font-family="'Times New Roman', Georgia, serif" font-style="italic" font-weight="700" font-size="22" fill="currentColor" text-anchor="middle" letter-spacing="0.5">
+      Bringing Motion to Life
+    </text>
+  </g>
+</svg>

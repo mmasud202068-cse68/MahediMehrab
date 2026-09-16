@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 320" fill="none">
+  <!-- Stylized Orange U Monogram -->
+  <g transform="translate(170, 110)">
+    <!-- Outer Orange Curves -->
+    <path d="M-65,-70 C-65,-20 -60,65 0,65 C60,65 65,-20 65,-70 L48,-70 C48,-15 44,48 0,48 C-44,48 -48,-15 -48,-70 Z" fill="#F26522"/>
+    
+    <!-- Middle Ribbon Strip -->
+    <path d="M-44,-60 C-44,-10 -40,32 0,32 C40,32 44,-10 44,-60 L32,-60 C32,-5 28,18 0,18 C-28,18 -32,-5 -32,-60 Z" fill="#F26522"/>
+    
+    <!-- Inner Ribbon Strip -->
+    <path d="M-28,-50 C-28, -5 -20,6 0,6 C20,6 28,-5 28,-50 L18,-50 C18,-1 12,-6 0,-6 C-12,-6 -18,-1 -18,-50 Z" fill="#F26522"/>
+    
+    <!-- Decorative Center Lines -->
+    <path d="M-55,-65 L-55, -20" stroke="#F26522" stroke-width="4" stroke-linecap="round"/>
+    <path d="M55,-65 L55, -20" stroke="#F26522" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- UNITED GROUP Typography -->
+  <text x="170" y="225" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="currentColor" text-anchor="middle" letter-spacing="2">
+    UNITED
+  </text>
+  <text x="170" y="265" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="currentColor" text-anchor="middle" letter-spacing="2">
+    GROUP
+  </text>
+
+  <!-- Horizontal underline bar -->
+  <line x1="130" y1="285" x2="210" y2="285" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+</svg>

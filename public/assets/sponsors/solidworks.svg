@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 380" fill="none">
+  <defs>
+    <radialGradient id="cubeTopGrad" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FF5252"/>
+      <stop offset="100%" stop-color="#D50000"/>
+    </radialGradient>
+    <linearGradient id="cubeLeftGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D50000"/>
+      <stop offset="100%" stop-color="#8B0000"/>
+    </linearGradient>
+    <linearGradient id="cubeRightGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E53935"/>
+      <stop offset="100%" stop-color="#B71C1C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 3D Red Glossy Cube -->
+  <g transform="translate(230, 140)">
+    <!-- Top Face -->
+    <polygon points="0,-100 85,-50 0,0 -85,-50" fill="url(#cubeTopGrad)" stroke="#FF8A80" stroke-width="2"/>
+    
+    <!-- Left Face with S -->
+    <polygon points="-85,-50 0,0 0,105 -85,55" fill="url(#cubeLeftGrad)" stroke="#B71C1C" stroke-width="2"/>
+    <!-- 3D Letter S on Left Face -->
+    <g transform="translate(-40, 26) skewY(30) scale(0.85, 1)">
+      <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="75" fill="#FFFFFF" text-anchor="middle" filter="drop-shadow(-2px 4px 4px rgba(0,0,0,0.5))">
+        S
+      </text>
+    </g>
+
+    <!-- Right Face with W -->
+    <polygon points="0,0 85,-50 85,55 0,105" fill="url(#cubeRightGrad)" stroke="#C62828" stroke-width="2"/>
+    <!-- 3D Letter W on Right Face -->
+    <g transform="translate(42, 26) skewY(-30) scale(0.85, 1)">
+      <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="75" fill="#FFFFFF" text-anchor="middle" filter="drop-shadow(2px 4px 4px rgba(0,0,0,0.5))">
+        W
+      </text>
+    </g>
+  </g>
+
+  <!-- Dassault Systèmes 3DS + SOLIDWORKS Brand Lockup -->
+  <g transform="translate(70, 310)">
+    <!-- 3DS Compass / Swoosh Icon -->
+    <g transform="translate(40, 15)">
+      <path d="M0,25 C-15,10 -15,-15 10,-20 C5,-10 15,5 0,25 Z" fill="#E60012"/>
+      <path d="M5,10 C20,5 25,-10 20,-20 C18,-5 5,0 5,10 Z" fill="#E60012"/>
+      <text x="-8" y="10" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="18" fill="#E60012">3DS</text>
+    </g>
+
+    <!-- SOLIDWORKS Bold Red Typography -->
+    <text x="95" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="38" fill="#E60012" letter-spacing="2">
+      SOLIDWORKS
+    </text>
+  </g>
+</svg>

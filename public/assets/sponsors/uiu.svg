@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 180" fill="none">
+  <!-- UIU Crest Shield (Left) -->
+  <g transform="translate(15, 10)">
+    <!-- Crest Shield Outline -->
+    <path d="M20,20 L120,20 C120,20 125,95 70,125 C15,95 20,20 20,20 Z" fill="#FFFFFF" stroke="#F26522" stroke-width="4"/>
+    
+    <!-- Top Orange Box with UIU -->
+    <rect x="25" y="24" width="90" height="38" rx="4" fill="#F26522"/>
+    <text x="70" y="52" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">
+      UIU
+    </text>
+
+    <!-- Open Book Illustration -->
+    <g transform="translate(70, 84)" stroke="#1E293B" stroke-width="2.5" fill="none">
+      <!-- Spine -->
+      <line x1="0" y1="-14" x2="0" y2="14" stroke-width="3"/>
+      <!-- Left Page -->
+      <path d="M0,12 C-15,6 -28,8 -32,12 L-32,-12 C-28,-16 -15,-18 0,-12 Z" fill="#F8FAFC"/>
+      <!-- Right Page -->
+      <path d="M0,12 C15,6 28,8 32,12 L32,-12 C28,-16 15,-18 0,-12 Z" fill="#F8FAFC"/>
+      <!-- Lines on pages -->
+      <line x1="-26" y1="-5" x2="-8" y2="-5" stroke="#64748B" stroke-width="1.5"/>
+      <line x1="-26" y1="0" x2="-8" y2="0" stroke="#64748B" stroke-width="1.5"/>
+      <line x1="-26" y1="5" x2="-8" y2="5" stroke="#64748B" stroke-width="1.5"/>
+      <line x1="8" y1="-5" x2="26" y2="-5" stroke="#64748B" stroke-width="1.5"/>
+      <line x1="8" y1="0" x2="26" y2="0" stroke="#64748B" stroke-width="1.5"/>
+      <line x1="8" y1="5" x2="26" y2="5" stroke="#64748B" stroke-width="1.5"/>
+    </g>
+
+    <!-- Shield Border Text (United International University) -->
+    <text x="32" y="108" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="7" fill="#1E293B" transform="rotate(-70 32,108)">
+      UNITED
+    </text>
+
+    <!-- Bottom Ribbon "QUEST FOR EXCELLENCE" -->
+    <g transform="translate(0, 115)">
+      <path d="M5,15 L25,5 L115,5 L135,15 L115,22 L25,22 Z" fill="#F26522"/>
+      <text x="70" y="16" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="9" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">
+        QUEST FOR EXCELLENCE
+      </text>
+    </g>
+  </g>
+
+  <!-- Typography Right: UNITED INTERNATIONAL UNIVERSITY -->
+  <g transform="translate(180, 58)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="36" fill="currentColor" letter-spacing="1.5">
+      UNITED
+    </text>
+    <text x="0" y="42" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="currentColor" letter-spacing="1">
+      INTERNATIONAL
+    </text>
+    <text x="0" y="84" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="36" fill="currentColor" letter-spacing="1.5">
+      UNIVERSITY
+    </text>
+  </g>
+</svg>
