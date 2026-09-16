@@ -1,4 +1,5 @@
 export type ThemeMode = 'dark' | 'light' | 'eye-protect';
+export type DeviceMode = 'pc' | 'tablet' | 'mobile';
 
 export interface Project {
   id: string;

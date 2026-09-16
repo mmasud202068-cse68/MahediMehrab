@@ -6,11 +6,13 @@ import {
   Moon,
   Sun,
   Eye,
+  Monitor,
+  Tablet,
+  Smartphone,
   Github,
   Linkedin,
   Facebook,
   Instagram,
-  Sparkles,
   Award,
   Briefcase,
   GraduationCap,
@@ -20,21 +22,28 @@ import {
   Mail,
   User,
   Clock,
-  ArrowUpRight
+  ArrowUpRight,
+  Sparkles
 } from 'lucide-react';
-import { ThemeMode } from '../types';
-import { PERSONAL_INFO, SOCIAL_LINKS } from '../data/portfolioData';
+import { ThemeMode, DeviceMode } from '../types';
+import { SOCIAL_LINKS } from '../data/portfolioData';
 import { LiveWatch } from './LiveWatch';
 import { BrandLogo } from './BrandLogo';
 
 interface NavbarProps {
   theme: ThemeMode;
   setTheme: (theme: ThemeMode) => void;
+  deviceMode: DeviceMode;
+  setDeviceMode: (mode: DeviceMode) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export const Navbar: React.FC<NavbarProps> = ({
+  theme,
+  setTheme,
+  deviceMode,
+  setDeviceMode
+}) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const navProfilePic = '/assets/images/Profile.jpeg';
 
@@ -43,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
     e.preventDefault();
     const el = document.getElementById(sectionId);
     if (el) {
-      const navHeight = 85;
+      const navHeight = 80;
       const elementPosition = el.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navHeight;
       window.scrollTo({
@@ -51,14 +60,12 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
         behavior: 'smooth'
       });
       setActiveSection(sectionId);
-      setMobileMenuOpen(false);
+      setMenuOpen(false);
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
       const sections = [
         'hero',
         'about',
@@ -68,7 +75,6 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
         'awards',
         'education',
         'extracurricular',
-        'sponsors',
         'contact'
       ];
 
@@ -88,17 +94,43 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
+
+  // ALL navigation items are consolidated into the Menu button
+  // Note: "Sponsors" is deliberately excluded from the menu button as requested
   const navItems = [
-    { label: 'About', id: 'about', icon: User },
-    { label: 'Expertise', id: 'expertise', icon: Cpu },
-    { label: 'Experience', id: 'experience', icon: Briefcase },
-    { label: 'Projects', id: 'projects', icon: FolderGit2 },
-    { label: 'Awards', id: 'awards', icon: Award },
-    { label: 'Education', id: 'education', icon: GraduationCap },
-    { label: 'Activities', id: 'extracurricular', icon: HeartHandshake },
-    { label: 'Sponsors', id: 'sponsors', icon: Sparkles },
-    { label: 'Contact', id: 'contact', icon: Mail }
+    { label: 'About Me', id: 'about', icon: User, desc: 'Biography, mission & background' },
+    { label: 'Expertise', id: 'expertise', icon: Cpu, desc: 'Robotics, software & tech stack' },
+    { label: 'Experience', id: 'experience', icon: Briefcase, desc: 'UIU Mariner CFO & Mars Rover' },
+    { label: 'Projects', id: 'projects', icon: FolderGit2, desc: 'Yggdrasil Rover, TalkSmart & Systems' },
+    { label: 'Awards', id: 'awards', icon: Award, desc: 'MATE ROV 2025 & URC World Top 5' },
+    { label: 'Education', id: 'education', icon: GraduationCap, desc: 'B.Sc in CSE at UIU, HSC & SSC' },
+    { label: 'Activities', id: 'extracurricular', icon: HeartHandshake, desc: 'WRO Judge, mentoring & touring' },
+    { label: 'Contact', id: 'contact', icon: Mail, desc: 'Direct collaboration & verified links' }
   ];
+
+  // 1-Button Theme Switcher (cycles Light -> Dark -> Eye-Protect -> Light)
+  const cycleTheme = () => {
+    if (theme === 'light') setTheme('dark');
+    else if (theme === 'dark') setTheme('eye-protect');
+    else setTheme('light');
+  };
+
+  // 1-Button Device Switcher (cycles PC -> Tablet -> Mobile -> PC)
+  const cycleDeviceMode = () => {
+    if (deviceMode === 'pc') setDeviceMode('tablet');
+    else if (deviceMode === 'tablet') setDeviceMode('mobile');
+    else setDeviceMode('pc');
+  };
 
   const getSocialIcon = (name: string) => {
     switch (name) {
@@ -119,251 +151,301 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, setTheme }) => {
     <header className="fixed top-0 left-0 right-0 z-50 py-3 px-3 sm:px-6 transition-all duration-300 pointer-events-none">
       <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
         
-        {/* Brand Pill with MK Logo & Avatar */}
+        {/* Brand Pill with MK Logo & Profile Thumbnail */}
         <motion.button
           onClick={(e) => scrollToSection(e, 'hero')}
-          whileHover={{ scale: 1.05, y: -2 }}
-          whileTap={{ scale: 0.95 }}
-          className={`flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 sm:py-2 rounded-2xl border backdrop-blur-xl shadow-lg cursor-pointer btn-popup ${
+          whileHover={{ scale: 1.04, y: -1 }}
+          whileTap={{ scale: 0.96 }}
+          className={`flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 sm:py-2 rounded-2xl border backdrop-blur-xl shadow-lg cursor-pointer btn-popup transition-all ${
             theme === 'dark'
-              ? 'bg-slate-900/90 border-slate-700/80 text-white shadow-black/40 hover:border-teal-500/60'
+              ? 'bg-slate-900/90 border-slate-700/80 text-white shadow-black/40 hover:border-orange-500/60'
               : theme === 'eye-protect'
               ? 'bg-[#fcf7ee]/95 border-amber-300 text-stone-900 shadow-amber-900/10 hover:border-amber-500'
               : 'bg-white/95 border-orange-200 text-stone-900 shadow-orange-100/50 hover:border-orange-400'
           }`}
         >
-          {/* Official MK Emblem to the left */}
+          {/* Official MK Emblem */}
           <BrandLogo size="sm" withGlow={true} className="flex-shrink-0" />
 
-          {/* Fixed Portrait Avatar */}
+          {/* Profile Avatar with Tucked-in Formal Preview */}
           <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-orange-500/50 shadow-sm flex-shrink-0">
             <img
               src={navProfilePic}
               alt="Md. Mehrab Hossain Khan"
-              className="w-full h-full object-cover object-[center_20%]"
+              className="w-full h-full object-cover object-[center_35%]"
               referrerPolicy="no-referrer"
             />
-            <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-orange-400 ring-2 ring-stone-950" />
+            <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-400 ring-1.5 ring-stone-950" />
           </div>
 
           <div className="flex flex-col text-left">
-            <span className="font-extrabold text-xs sm:text-sm tracking-tight leading-none">
+            <span className="font-extrabold text-xs sm:text-sm tracking-tight leading-none text-stone-950 dark:text-white">
               Mehrab Khan
             </span>
-            <span className="text-[10px] font-mono opacity-65 tracking-wider uppercase mt-0.5">
+            <span className="text-[10px] font-mono text-orange-600 dark:text-orange-400 tracking-wider uppercase mt-0.5 font-bold">
               Robotics • CFO
             </span>
           </div>
         </motion.button>
 
-        {/* Floating Desktop Navigation Dock */}
-        <nav
-          className={`hidden xl:flex items-center gap-1 p-1.5 rounded-full border backdrop-blur-2xl shadow-xl transition-all ${
-            theme === 'dark'
-              ? 'bg-stone-950/85 border-orange-500/20 text-stone-300 shadow-black/50'
-              : theme === 'eye-protect'
-              ? 'bg-[#f5ede0]/90 border-amber-300/70 text-stone-800 shadow-amber-900/10'
-              : 'bg-white/90 border-orange-200/90 text-stone-700 shadow-orange-100/60'
-          }`}
-        >
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeSection === item.id;
-            return (
-              <motion.button
-                key={item.id}
-                onClick={(e) => scrollToSection(e, item.id)}
-                whileHover={{ scale: 1.08, y: -2 }}
-                whileTap={{ scale: 0.94 }}
-                className={`relative px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 cursor-pointer btn-popup ${
-                  isActive
-                    ? 'text-white font-bold'
-                    : 'opacity-70 hover:opacity-100 hover:bg-stone-500/10'
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNavPill"
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 shadow-md shadow-orange-500/30"
-                    transition={{ type: 'spring', stiffness: 450, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10 flex items-center gap-1.5">
-                  <Icon className="w-3.5 h-3.5" />
-                  <span>{item.label}</span>
-                </span>
-              </motion.button>
-            );
-          })}
-        </nav>
-
-        {/* Right Controls: Live Watch, 3-Theme Segmented Bar, Mobile Drawer Trigger */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Live Watch Pill */}
-          <div className="hidden lg:block">
+        {/* Right Controls: Unified Theme Button, Unified Device Button, Let's Talk CTA, Unified Menu Button */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          
+          {/* Live Watch Pill (Compact) */}
+          <div className="hidden md:block">
             <LiveWatch theme={theme} compact={true} />
           </div>
 
-          {/* 3-Theme Segmented Switcher Capsule */}
-          <div
-            className={`flex items-center p-1 rounded-2xl border backdrop-blur-xl shadow-lg ${
+          {/* ================================================================= */}
+          {/* 1. THREE THEMES IN ONE COMPACT BUTTON (As explicitly requested)    */}
+          {/* ================================================================= */}
+          <motion.button
+            whileHover={{ scale: 1.08, y: -1 }}
+            whileTap={{ scale: 0.94 }}
+            onClick={cycleTheme}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-2xl border backdrop-blur-xl shadow-md cursor-pointer transition-all btn-popup ${
               theme === 'dark'
-                ? 'bg-stone-900/90 border-orange-500/25 shadow-black/40'
+                ? 'bg-stone-900/90 border-orange-500/30 text-orange-400 hover:border-orange-400'
                 : theme === 'eye-protect'
-                ? 'bg-[#fcf7ee]/95 border-amber-300 shadow-amber-900/10'
-                : 'bg-white/90 border-orange-200 shadow-orange-100/40'
+                ? 'bg-[#fcf7ee]/95 border-amber-300 text-amber-800 shadow-amber-900/10 hover:border-amber-500'
+                : 'bg-white/95 border-orange-200 text-orange-600 shadow-orange-100/40 hover:border-orange-400'
             }`}
+            title={`Active Theme: ${theme.toUpperCase()} • Click to switch (Light → Dark → Eye-Protect)`}
+            aria-label="Toggle Theme Mode"
           >
-            <motion.button
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme('dark')}
-              className={`p-2 rounded-xl text-xs transition-all cursor-pointer btn-popup ${
-                theme === 'dark'
-                  ? 'bg-stone-800 text-orange-400 shadow-md ring-1 ring-orange-500/40'
-                  : 'opacity-50 hover:opacity-100 text-stone-400'
-              }`}
-              title="Dark Mode"
-              aria-label="Dark Mode"
-            >
-              <Moon className="w-4 h-4" />
-            </motion.button>
+            {theme === 'light' && <Sun className="w-4 h-4 text-amber-500" />}
+            {theme === 'dark' && <Moon className="w-4 h-4 text-orange-400" />}
+            {theme === 'eye-protect' && <Eye className="w-4 h-4 text-amber-700" />}
+            
+            <span className="hidden sm:inline text-[11px] font-mono font-bold capitalize">
+              {theme === 'eye-protect' ? 'Reading' : theme}
+            </span>
+          </motion.button>
 
-            <motion.button
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme('light')}
-              className={`p-2 rounded-xl text-xs transition-all cursor-pointer btn-popup ${
-                theme === 'light'
-                  ? 'bg-stone-100 text-orange-500 shadow-md ring-1 ring-orange-400/50'
-                  : 'opacity-50 hover:opacity-100 text-stone-500'
-              }`}
-              title="Light Mode"
-              aria-label="Light Mode"
-            >
-              <Sun className="w-4 h-4" />
-            </motion.button>
+          {/* ================================================================= */}
+          {/* 2. PC, MOBILE, TABLET IN ONE COMPACT BUTTON (Explicitly requested) */}
+          {/* ================================================================= */}
+          <motion.button
+            whileHover={{ scale: 1.08, y: -1 }}
+            whileTap={{ scale: 0.94 }}
+            onClick={cycleDeviceMode}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-2xl border backdrop-blur-xl shadow-md cursor-pointer transition-all btn-popup ${
+              theme === 'dark'
+                ? 'bg-stone-900/90 border-slate-700 text-stone-200 hover:border-orange-500/60'
+                : theme === 'eye-protect'
+                ? 'bg-[#fcf7ee]/95 border-amber-300 text-stone-900 hover:border-amber-500'
+                : 'bg-white/95 border-orange-200 text-stone-900 hover:border-orange-400 shadow-orange-100/40'
+            }`}
+            title={`Active Viewport: ${deviceMode.toUpperCase()} • Click to switch (PC → Tablet → Mobile)`}
+            aria-label="Toggle Responsive Viewport Mode"
+          >
+            {deviceMode === 'pc' && <Monitor className="w-4 h-4 text-orange-500" />}
+            {deviceMode === 'tablet' && <Tablet className="w-4 h-4 text-orange-500" />}
+            {deviceMode === 'mobile' && <Smartphone className="w-4 h-4 text-orange-500" />}
+            
+            <span className="hidden sm:inline text-[11px] font-mono font-bold uppercase">
+              {deviceMode}
+            </span>
+          </motion.button>
 
-            <motion.button
-              whileHover={{ scale: 1.15, y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setTheme('eye-protect')}
-              className={`p-2 rounded-xl text-xs transition-all cursor-pointer btn-popup ${
-                theme === 'eye-protect'
-                  ? 'bg-amber-200 text-amber-900 shadow-md ring-1 ring-amber-500/50'
-                  : 'opacity-50 hover:opacity-100 text-amber-700'
-              }`}
-              title="Eye Protect Mode (Warm Sepia/Reading)"
-              aria-label="Eye Protect Mode"
-            >
-              <Eye className="w-4 h-4" />
-            </motion.button>
-          </div>
-
-          {/* Direct Contact Button (Desktop) */}
+          {/* Direct Contact Button */}
           <motion.button
             onClick={(e) => scrollToSection(e, 'contact')}
-            whileHover={{ scale: 1.08, y: -2 }}
-            whileTap={{ scale: 0.94 }}
-            className="hidden sm:flex items-center gap-1.5 px-4 py-2 rounded-2xl font-bold text-xs bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-400 hover:to-amber-400 text-white shadow-lg shadow-orange-500/25 border border-orange-400/40 cursor-pointer btn-popup"
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden sm:flex items-center gap-1 px-3.5 py-1.5 sm:py-2 rounded-2xl font-bold text-xs bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 hover:from-orange-400 hover:to-amber-400 text-white shadow-md shadow-orange-500/25 border border-orange-400/40 cursor-pointer btn-popup"
           >
-            <span>Let's Talk</span>
+            <span>Connect</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </motion.button>
 
-          {/* Mobile Hamburger Toggle Button */}
+          {/* ================================================================= */}
+          {/* 3. UNIFIED MENU BUTTON (ALL nav items moved here, Sponsors removed)*/}
+          {/* ================================================================= */}
           <motion.button
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.92 }}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`xl:hidden p-2.5 rounded-2xl border backdrop-blur-xl shadow-lg cursor-pointer btn-popup ${
-              theme === 'dark'
-                ? 'bg-slate-900/90 border-slate-700 text-white'
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-2xl border backdrop-blur-xl shadow-lg cursor-pointer transition-all btn-popup ${
+              menuOpen
+                ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white border-orange-400 shadow-orange-500/30'
+                : theme === 'dark'
+                ? 'bg-stone-900/95 border-orange-500/30 text-white hover:border-orange-400'
                 : theme === 'eye-protect'
-                ? 'bg-[#fcf7ee]/95 border-amber-300 text-stone-900'
-                : 'bg-white/90 border-slate-200 text-slate-900'
+                ? 'bg-[#fcf7ee]/95 border-amber-300 text-stone-900 hover:border-amber-500'
+                : 'bg-white/95 border-orange-200 text-stone-900 hover:border-orange-400 shadow-orange-100/50'
             }`}
-            aria-label="Toggle navigation menu"
+            aria-label="Open Navigation Menu"
+            title="Open Complete Navigation Menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-red-400" /> : <Menu className="w-5 h-5" />}
+            {menuOpen ? (
+              <>
+                <X className="w-4 h-4 text-white" />
+                <span className="font-extrabold text-xs tracking-wide">Close</span>
+              </>
+            ) : (
+              <>
+                <Menu className="w-4 h-4 text-orange-500" />
+                <span className="font-extrabold text-xs tracking-wide">Menu</span>
+              </>
+            )}
           </motion.button>
         </div>
       </div>
 
-      {/* Mobile Full Navigation Overlay */}
+      {/* =================================================================== */}
+      {/* 4. EXPANSIVE FULL MENU DRAWER / MODAL OVERLAY                       */}
+      {/* =================================================================== */}
       <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
-            transition={{ duration: 0.25 }}
-            className={`xl:hidden pointer-events-auto mt-3 rounded-3xl border shadow-2xl overflow-hidden backdrop-blur-2xl ${
-              theme === 'dark'
-                ? 'bg-slate-950/95 border-slate-800 text-white shadow-black/80'
-                : theme === 'eye-protect'
-                ? 'bg-[#fbf5eb]/98 border-amber-300 text-stone-900 shadow-amber-900/20'
-                : 'bg-white/98 border-slate-200 text-slate-900 shadow-slate-300/60'
-            }`}
-          >
-            <div className="p-5 space-y-4 max-h-[85vh] overflow-y-auto">
-              {/* Mobile Live Watch view */}
-              <div className="pb-3 border-b border-orange-500/15">
-                <div className="text-[11px] font-mono font-bold uppercase opacity-60 mb-2 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-orange-400" />
-                  <span>Real-Time Dhaka Clock</span>
-                </div>
-                <LiveWatch theme={theme} compact={false} />
-              </div>
+        {menuOpen && (
+          <>
+            {/* Backdrop Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm pointer-events-auto"
+            />
 
-              {/* Navigation Grid Buttons with Pop-Up Physics */}
-              <div className="grid grid-cols-2 gap-2">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = activeSection === item.id;
-                  return (
-                    <motion.button
-                      key={item.id}
-                      onClick={(e) => scrollToSection(e, item.id)}
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`flex items-center gap-2.5 p-3 rounded-2xl text-xs font-bold transition-all text-left cursor-pointer btn-popup ${
-                        isActive
-                          ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/25'
-                          : 'bg-stone-500/10 hover:bg-stone-500/15'
-                      }`}
-                    >
-                      <Icon className="w-4 h-4 flex-shrink-0" />
-                      <span>{item.label}</span>
-                    </motion.button>
-                  );
-                })}
-              </div>
+            {/* Modal Menu Surface */}
+            <motion.div
+              initial={{ opacity: 0, y: -25, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -25, scale: 0.97 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className={`fixed top-16 sm:top-20 inset-x-3 sm:inset-x-auto sm:right-6 sm:w-full sm:max-w-2xl z-50 pointer-events-auto rounded-3xl border shadow-2xl overflow-hidden backdrop-blur-2xl ${
+                theme === 'dark'
+                  ? 'bg-stone-950/98 border-stone-800 text-white shadow-black/80'
+                  : theme === 'eye-protect'
+                  ? 'bg-[#fbf5eb]/98 border-amber-300 text-stone-900 shadow-amber-900/20'
+                  : 'bg-white/98 border-orange-200 text-stone-900 shadow-orange-200/40'
+              }`}
+            >
+              <div className="p-5 sm:p-6 space-y-4 max-h-[82vh] overflow-y-auto">
+                
+                {/* Header with Avatar & Live Clock */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-orange-500/15 gap-3">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-11 h-11 rounded-2xl overflow-hidden border-2 border-orange-500/60 shadow-md flex-shrink-0">
+                      <img
+                        src={navProfilePic}
+                        alt="Md. Mehrab Hossain Khan"
+                        className="w-full h-full object-cover object-[center_35%]"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <h3 className="font-extrabold text-sm sm:text-base leading-tight">
+                          Md. Mehrab Hossain Khan
+                        </h3>
+                        <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                      </div>
+                      <p className="text-xs font-mono text-orange-600 dark:text-orange-400 font-bold mt-0.5">
+                        CFO at UIU Mariner • MATE ROV 2025 Champion
+                      </p>
+                    </div>
+                  </div>
 
-              {/* Social Media Links in Mobile Menu */}
-              <div className="pt-3 border-t border-orange-500/15">
-                <div className="text-[11px] font-mono font-bold uppercase opacity-60 mb-2">
-                  Connect Directly
+                  {/* Real-time Clock display inside menu */}
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-500/10 border border-orange-500/20 text-xs font-mono font-bold text-orange-700 dark:text-orange-300 self-start sm:self-auto">
+                    <Clock className="w-3.5 h-3.5 text-orange-500 flex-shrink-0" />
+                    <span>Dhaka Time:</span>
+                    <LiveWatch theme={theme} compact={true} />
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {SOCIAL_LINKS.map((link) => (
-                    <motion.a
-                      key={link.platform}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.08, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs bg-stone-500/10 hover:bg-orange-500/20 font-semibold transition-colors btn-popup"
-                    >
-                      {getSocialIcon(link.iconName)}
-                      <span>{link.platform}</span>
-                    </motion.a>
-                  ))}
+
+                {/* Section Navigation Header */}
+                <div className="text-[11px] font-mono font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 flex items-center justify-between">
+                  <span>Navigation Hub</span>
+                  <span className="text-[10px] text-orange-600 dark:text-orange-400 font-semibold">
+                    {navItems.length} Sections
+                  </span>
                 </div>
+
+                {/* Navigation Items Grid (Sponsors omitted as requested) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5">
+                  {navItems.map((item) => {
+                    const Icon = item.icon;
+                    const isActive = activeSection === item.id;
+                    return (
+                      <motion.button
+                        key={item.id}
+                        onClick={(e) => scrollToSection(e, item.id)}
+                        whileHover={{ scale: 1.02, x: 2 }}
+                        whileTap={{ scale: 0.97 }}
+                        className={`flex items-start gap-3 p-3 rounded-2xl transition-all text-left cursor-pointer border btn-popup ${
+                          isActive
+                            ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-white border-orange-400 shadow-md shadow-orange-500/20 font-bold'
+                            : theme === 'dark'
+                            ? 'bg-stone-900/60 hover:bg-stone-900 border-stone-800/80 text-stone-200 hover:border-orange-500/40'
+                            : theme === 'eye-protect'
+                            ? 'bg-[#f5ede0]/70 hover:bg-[#f5ede0] border-amber-200 text-stone-900 hover:border-amber-400'
+                            : 'bg-orange-50/50 hover:bg-orange-50 border-orange-100 text-stone-900 hover:border-orange-300'
+                        }`}
+                      >
+                        <div
+                          className={`p-2 rounded-xl flex-shrink-0 mt-0.5 ${
+                            isActive
+                              ? 'bg-white/20 text-white'
+                              : 'bg-orange-500/10 text-orange-600 dark:text-orange-400'
+                          }`}
+                        >
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="font-extrabold text-xs sm:text-sm tracking-tight leading-snug">
+                            {item.label}
+                          </div>
+                          <div
+                            className={`text-[11px] truncate mt-0.5 ${
+                              isActive ? 'text-white/80' : 'opacity-65'
+                            }`}
+                          >
+                            {item.desc}
+                          </div>
+                        </div>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                {/* Direct Social Media Links */}
+                <div className="pt-3 border-t border-orange-500/15">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400">
+                      Direct Social Presence
+                    </span>
+                    <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                      Verified
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {SOCIAL_LINKS.map((link) => (
+                      <motion.a
+                        key={link.platform}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`flex items-center justify-center gap-1.5 p-2 rounded-xl text-xs font-bold border transition-colors btn-popup ${
+                          theme === 'dark'
+                            ? 'bg-stone-900 border-stone-800 text-stone-200 hover:border-orange-500/50'
+                            : 'bg-white border-orange-200/80 text-stone-800 hover:border-orange-400 shadow-sm'
+                        }`}
+                      >
+                        {getSocialIcon(link.iconName)}
+                        <span>{link.platform}</span>
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

@@ -156,6 +156,28 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   )}
                 </div>
 
+                {/* Multi-Photo Gallery Preview Strip */}
+                {project.gallery && project.gallery.length > 1 && (
+                  <div className="flex items-center gap-2 pt-1">
+                    {project.gallery.slice(0, 3).map((imgUrl, i) => (
+                      <div
+                        key={i}
+                        className="relative w-12 h-8 sm:w-14 sm:h-9 rounded-lg overflow-hidden border border-orange-500/30 flex-shrink-0 bg-stone-900 shadow-sm"
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`${project.title} preview ${i + 1}`}
+                          className="w-full h-full object-cover"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    ))}
+                    <span className="text-[10px] font-mono text-orange-600 dark:text-orange-400 font-bold">
+                      {project.gallery.length} Verified Photos
+                    </span>
+                  </div>
+                )}
+
                 {/* Action Buttons POP UP */}
                 <div className="pt-3 border-t border-orange-500/15 flex items-center justify-between gap-2.5">
                   <motion.button

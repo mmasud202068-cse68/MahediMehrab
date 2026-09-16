@@ -170,37 +170,38 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "mars-rover-system",
-    title: "UIU Mars Rover - Rocker-Bogie & Telemetry",
-    subtitle: "URC Utah & ARC World Finalist Rover",
+    title: "UIU Mars Rover: Yggdrasil — URC 2024 & ARC World Finalist",
+    subtitle: "Qualified for University Rover Challenge 2024 (SAR) • 1st in Asia & 5th in World",
     category: "Robotics & Hardware",
-    labOrCourse: "Autonomous Robotics Systems",
-    description: "Planetary rover with multi-axis robotic arm, autonomous navigation, life-detection science laboratory, and robust logistics infrastructure.",
-    fullDescription: "Developed for the grueling desert challenges of Hanksville, Utah at the University Rover Challenge (URC) and Anatolian Rover Challenge (ARC). Built with carbon-composite chassis, rocker-bogie terrain traversal, wireless 5.8GHz data links, and onboard spectrometer diagnostics. Mehrab contributed heavily to operational logistics, documentation rigor, and field-trial readiness.",
+    labOrCourse: "Autonomous Robotics Systems (CAIR • UIU)",
+    description: "Planetary rover with rocker-bogie locomotion, 3D-printed flexible honeycomb compliant wheels, 6-DOF robotic arm with sample retrieval gripper claw, and autonomous telemetry under CAIR.",
+    fullDescription: "Engineered and deployed for the University Rover Challenge (URC 2024) in Hanksville, Utah, USA and the Anatolian Rover Challenge (ARC). Developed under CAIR (Centre for Artificial Intelligence & Robotics) at United International University. Features high-traction terrain traversal with 3D-printed honeycomb compliant wheels, differential rocker-bogie suspension, 5.8GHz long-range wireless data links, and a precision robotic manipulator arm capable of delicate sample container collection and extreme terrain operations under the Bangladesh national flag. Mehrab contributed decisively to cross-border logistics, operational field trials, and competition equipment durability.",
     keyContributions: [
-      "Crucial Logistics member managing cross-border competition deployments and supply chains.",
-      "Ensured field test operational readiness during intense simulation trials in rugged environments.",
-      "Contributed to ranking 5th in the entire world (1st in Asia) at URC 2024 in Utah, USA."
+      "Crucial contributor to the System Acceptance Review (SAR) qualification for University Rover Challenge 2024 (Rover Yggdrasil).",
+      "Field-tested the multi-axis robotic arm with custom red 3-finger gripper claw collecting soil specimen canisters on rocky Martian-simulated terrain.",
+      "Spearheaded international logistics, equipment durability pipelines, and spare supply chains leading to 5th in the World (1st in Asia) in Utah, USA."
     ],
-    technologies: ["Autonomous Robotics", "C++", "Embedded Systems", "Long-Range RF", "SolidWorks", "Planetary Navigation", "ROS"],
-    image: "/assets/images/rover_robotics_1789498391669.jpg",
+    technologies: ["Autonomous Robotics", "C++", "Embedded Systems", "Long-Range RF", "SolidWorks", "Planetary Navigation", "ROS", "CAIR UIU"],
+    image: "/assets/images/yggdrasil_urc_banner.jpg",
     gallery: [
-      "/assets/images/rover_robotics_1789498391669.jpg",
-      "/assets/images/underwater_rov_1789498408884.jpg",
-      "/assets/images/cinematography_drone_1789498441821.jpg"
+      "/assets/images/yggdrasil_urc_banner.jpg",
+      "/assets/images/uiu_mars_rover_hardware.jpg",
+      "/assets/images/rover_robotics_1789498391669.jpg"
     ],
     specs: [
-      { label: "Chassis Mechanism", value: "Differential Rocker-Bogie" },
-      { label: "Wireless Range", value: "1.2 km Line of Sight" },
-      { label: "Arm Degrees of Freedom", value: "6-DOF Precision Manipulator" },
-      { label: "Obstacle Clearance", value: "35 cm Boulders & 40° Incline" }
+      { label: "Suspension Architecture", value: "Differential Rocker-Bogie Mechanism" },
+      { label: "Wheel Engineering", value: "3D-Printed Flexible Honeycomb Compliant Wheels" },
+      { label: "Manipulator Dexterity", value: "6-DOF Arm with 3-Finger Red Gripper Claw" },
+      { label: "SAR Qualification", value: "Official URC 2024 Finalist (CAIR / UIU)" }
     ],
     challengesSolved: [
       "Extreme desert thermal regulation in Utah heat (over 40°C)",
       "High-bandwidth video streaming across rocky geological canyons",
-      "Rapid spare parts logistics and team supply chains across continents"
+      "Rapid spare parts logistics and team supply chains across continents",
+      "Multi-axis manipulator precision during real-time sample container collection"
     ],
     systemMetrics: [
-      { label: "URC 2024 (Utah)", value: "5th in World • 1st in Asia", detail: "Highest ranked Asian rover team in Utah, USA" },
+      { label: "URC 2024 (Utah)", value: "5th in World • 1st in Asia", detail: "Highest ranked Asian rover team at Mars Desert Research Station, Utah" },
       { label: "ARC 2023", value: "3rd in World (Bronze)", detail: "International podium finish in Anatolian Rover Challenge" }
     ],
     badge: "World Top 5 Rover",
@@ -420,15 +421,15 @@ export const AWARDS: Award[] = [
   },
   {
     id: "urc-2024-5th",
-    title: "5th in the Whole World & 1st in Asia",
-    team: "UIU Mars Rover Team",
-    event: "University Rover Challenge (URC) 2024",
+    title: "5th in the Whole World & 1st in Asia (URC 2024)",
+    team: "UIU Mars Rover Team (#UMRT)",
+    event: "University Rover Challenge (URC) 2024 • Utah, USA",
     year: "2024",
     rank: "5th in World • 1st in Asia",
-    category: "Hanksville, Utah, USA",
-    description: "Conquered planetary terrain navigation, extreme retrieval, and autonomous obstacle avoidance in the Utah desert against the best aerospace teams worldwide.",
+    category: "System Acceptance Review (SAR) Finalist • Utah, USA",
+    description: "Qualified for URC 2024 with rover 'Yggdrasil' under CAIR & UIU, ranking 5th in the entire world and 1st across Asia during grueling Martian desert missions at the Mars Desert Research Station, Utah.",
     badgeType: "gold",
-    featuredImage: "/assets/images/rover_robotics_1789498391669.jpg"
+    featuredImage: "/assets/images/yggdrasil_urc_banner.jpg"
   },
   {
     id: "arc-2023-3rd",

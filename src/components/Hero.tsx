@@ -145,23 +145,35 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="relative my-4 sm:my-6 flex flex-col items-center group"
         >
-          {/* Pulsing Ethereal Atmospheric Aura Ring (Light Orange Warmth) */}
-          <div className="absolute -inset-4 bg-gradient-to-tr from-orange-500/35 via-amber-500/30 to-orange-400/35 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition-all duration-700 animate-pulse pointer-events-none" />
+          {/* Pulsing Ethereal Atmospheric Aura (Light Orange Warmth) */}
+          <div className="absolute -inset-4 bg-gradient-to-b from-orange-500/30 via-amber-500/25 to-orange-400/30 rounded-[40px] blur-2xl opacity-80 group-hover:opacity-100 transition-all duration-700 animate-pulse pointer-events-none" />
 
           {/* Outer Orbital Rotating Hairline Ring */}
-          <div className="absolute -inset-2.5 rounded-full border border-orange-400/40 dark:border-orange-400/50 pointer-events-none" />
+          <div className="absolute -inset-2 rounded-[38px] border border-orange-400/40 dark:border-orange-400/50 pointer-events-none" />
 
-          {/* Precision Medallion Frame */}
-          <div className="relative w-44 h-44 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-full p-1.5 sm:p-2 bg-gradient-to-tr from-orange-400 via-amber-400 to-orange-500 shadow-2xl glow-orange">
-            <div className="w-full h-full rounded-full overflow-hidden border-4 border-stone-950 bg-stone-950 relative shadow-inner">
+          {/* Executive Portrait Frame - Beautifully Centered with Tucked-in Shirt Clearly Visible */}
+          <div className="relative w-64 sm:w-72 md:w-80 aspect-[3/4] rounded-[32px] sm:rounded-[36px] p-1.5 sm:p-2 bg-gradient-to-b from-orange-400 via-amber-400 to-orange-500 shadow-2xl glow-orange">
+            <div className="w-full h-full rounded-[26px] sm:rounded-[30px] overflow-hidden border-2 sm:border-3 border-stone-950 bg-stone-950 relative shadow-inner">
               <img
                 src={OFFICIAL_PROFILE_IMAGE}
-                alt="Md. Mehrab Hossain Khan"
-                className="w-full h-full object-cover object-[center_20%] select-none pointer-events-none transform group-hover:scale-104 transition-transform duration-700"
+                alt="Md. Mehrab Hossain Khan - Executive Portrait with Tucked-in Shirt"
+                className="w-full h-full object-cover object-[center_35%] select-none pointer-events-none transform group-hover:scale-103 transition-transform duration-700"
                 referrerPolicy="no-referrer"
                 loading="eager"
                 draggable={false}
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10 pointer-events-none" />
+              
+              {/* Elegant Tucked-in Profile Caption Tag */}
+              <div className="absolute bottom-2.5 sm:bottom-3 inset-x-2.5 sm:inset-x-3 py-1.5 px-3 rounded-2xl bg-black/65 backdrop-blur-md border border-white/20 flex items-center justify-between text-white shadow-lg pointer-events-none">
+                <div className="flex items-center gap-1.5 truncate">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
+                  <span className="text-[11px] sm:text-xs font-bold tracking-tight truncate">Md. Mehrab Hossain Khan</span>
+                </div>
+                <span className="text-[9px] sm:text-[10px] font-mono text-orange-300 font-bold uppercase tracking-wider flex-shrink-0 pl-1">
+                  UIU Mariner CFO
+                </span>
+              </div>
             </div>
           </div>
 

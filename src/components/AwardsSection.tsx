@@ -158,6 +158,17 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ theme }) => {
                   {award.team} • {award.event}
                 </div>
 
+                {award.featuredImage && (
+                  <div className="my-3 rounded-2xl overflow-hidden aspect-[16/9] border border-orange-500/25 bg-black shadow-sm">
+                    <img
+                      src={award.featuredImage}
+                      alt={award.title}
+                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                )}
+
                 <p className="text-xs opacity-80 leading-relaxed">
                   {award.description}
                 </p>
