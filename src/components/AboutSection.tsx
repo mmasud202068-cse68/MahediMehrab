@@ -78,7 +78,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
             className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold tracking-wider uppercase mb-3 bg-orange-500/10 text-orange-400 border border-orange-500/20 shadow-sm"
           >
             <User className="w-3.5 h-3.5 text-orange-400" />
-            About Mehrab Hossain Khan
+            About Md Mehrab Hossain Khan
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
@@ -148,7 +148,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
               {activeTab === 'story' && (
                 <div className="space-y-4 text-xs sm:text-sm leading-relaxed opacity-90">
                   <p>
-                    I am <strong className="text-[var(--text-primary)]">Md. Mehrab Hossain Khan</strong>, born and raised in Dhaka. I live at Jatrabari with my family, where my passion for science, tinkering, and building first ignited.
+                    I am <strong className="text-[var(--text-primary)]">Md Mehrab Hossain Khan</strong>, born and raised in Dhaka. I live at Jatrabari with my family, where my passion for science, tinkering, and building first ignited.
                   </p>
                   <p>
                     Currently, I am pursuing my Bachelor of Science in <strong className="text-[var(--text-primary)]">Computer Science and Engineering (CSE)</strong> at United International University (UIU). I am a genuine tech enthusiast who loves turning ideas into tangible, high-impact projects.
@@ -267,7 +267,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ theme }) => {
                 "Learning by doing is my true compass. Real engineering is not bounded by lecture slides—it is about having the tenacity to prototype, test in unpredictable environments, and achieve world-class results."
               </p>
               <div className="mt-4 flex items-center justify-between pt-3 border-t border-orange-500/10">
-                <span className="text-xs font-bold opacity-80">— Md. Mehrab Hossain Khan</span>
+                <span className="text-xs font-bold opacity-80">— Md Mehrab Hossain Khan</span>
                 <motion.button
                   onClick={() => scrollToSection('contact')}
                   whileHover={{ scale: 1.08, y: -2 }}

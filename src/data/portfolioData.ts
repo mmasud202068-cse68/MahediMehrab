@@ -1,7 +1,7 @@
 import { Award, Education, Experience, Project, SkillDomain, SocialLink, Sponsor } from '../types';
 
 export const PERSONAL_INFO = {
-  name: "Md. Mehrab Hossain Khan",
+  name: "Md Mehrab Hossain Khan",
   shortName: "Mehrab Khan",
   title: "Robotics Engineer & Tech Innovator",
   subtitle: "CFO at UIU Mariner • MATE ROV WORLD FINALS 2025 Champion (Doc) • UIU CSE Student",
@@ -12,7 +12,7 @@ export const PERSONAL_INFO = {
     "mkhan201377@2bscse.uiu.ac.bd",
     "mehrabkhan.mhk@gmail.com"
   ],
-  bio: `This is Md. Mehrab Hossain Khan from Dhaka, living in Jatrabari with my family. Currently pursuing my Bachelor's degree in Computer Science and Engineering at United International University (UIU).
+  bio: `This is Md Mehrab Hossain Khan from Dhaka, living in Jatrabari with my family. Currently pursuing my Bachelor's degree in Computer Science and Engineering at United International University (UIU).
 
 I am an ambitious tech enthusiast who thrives on transforming innovative ideas into robust real-world systems. My core engineering passion spans robotics, autonomous hardware, drone technology, underwater robotics (ROVs), and emerging technologies. I have proudly contributed to global-stage engineering teams including the UIU Mars Rover Team and UIU Mariner (Bangladesh's premier underwater ROV team), competing and winning top positions internationally.
 

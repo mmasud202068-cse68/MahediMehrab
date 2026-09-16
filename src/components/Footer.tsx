@@ -40,14 +40,14 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
             <div className="w-10 h-10 rounded-2xl overflow-hidden border border-orange-500/40 p-0.5 bg-gradient-to-tr from-orange-500 to-amber-400 flex-shrink-0">
               <img
                 src="/assets/images/Profile.jpeg"
-                alt="Md. Mehrab Hossain Khan"
+                alt="Md Mehrab Hossain Khan"
                 className="w-full h-full object-cover object-[center_20%] rounded-[14px]"
                 referrerPolicy="no-referrer"
               />
             </div>
             <div>
               <div className="font-extrabold text-sm tracking-wide text-stone-900 dark:text-white">
-                Md. Mehrab Hossain Khan
+                Md Mehrab Hossain Khan
               </div>
               <div className="text-xs text-stone-600 dark:text-stone-400 font-medium">
                 CFO & Robotics Lead • United International University (UIU)
@@ -88,7 +88,7 @@ export const Footer: React.FC<FooterProps> = ({ theme }) => {
 
         <div className="mt-8 pt-6 border-t border-orange-500/15 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-600 dark:text-stone-400 font-medium text-center sm:text-left">
           <div>
-            © {new Date().getFullYear()} Md. Mehrab Hossain Khan. Engineered with React, TypeScript & Tailwind.
+            © {new Date().getFullYear()} Md Mehrab Hossain Khan. Engineered with React, TypeScript & Tailwind.
           </div>
           <div>
             Jatrabari, Dhaka, Bangladesh • United International University (UIU)

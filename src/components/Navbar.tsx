@@ -171,7 +171,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="relative w-8 h-8 rounded-xl overflow-hidden border border-orange-500/50 shadow-sm flex-shrink-0">
             <img
               src={navProfilePic}
-              alt="Md. Mehrab Hossain Khan"
+              alt="Md Mehrab Hossain Khan"
               className="w-full h-full object-cover object-[center_35%]"
               referrerPolicy="no-referrer"
             />
@@ -330,7 +330,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <div className="relative w-11 h-11 rounded-2xl overflow-hidden border-2 border-orange-500/60 shadow-md flex-shrink-0">
                       <img
                         src={navProfilePic}
-                        alt="Md. Mehrab Hossain Khan"
+                        alt="Md Mehrab Hossain Khan"
                         className="w-full h-full object-cover object-[center_35%]"
                         referrerPolicy="no-referrer"
                       />
@@ -338,7 +338,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <div>
                       <div className="flex items-center gap-1.5">
                         <h3 className="font-extrabold text-sm sm:text-base leading-tight">
-                          Md. Mehrab Hossain Khan
+                          Md Mehrab Hossain Khan
                         </h3>
                         <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                       </div>

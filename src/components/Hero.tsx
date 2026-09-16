@@ -18,23 +18,29 @@ import {
   Trophy,
   Globe2,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Maximize2,
+  Activity
 } from 'lucide-react';
 import { PERSONAL_INFO, SOCIAL_LINKS } from '../data/portfolioData';
 import { ThemeMode } from '../types';
 import confetti from 'canvas-confetti';
 import { BrandLogo } from './BrandLogo';
+import { PortraitModal } from './PortraitModal';
+import { InteractiveSystemVisualizer } from './InteractiveSystemVisualizer';
 
 interface HeroProps {
   theme: ThemeMode;
   onOpenTalkSmartDemo?: () => void;
 }
 
-// Fixed, Permanent Official Profile Portrait of Md. Mehrab Hossain Khan
+// Fixed, Permanent Official Profile Portrait of Md Mehrab Hossain Khan
 const OFFICIAL_PROFILE_IMAGE = '/assets/images/Profile.jpeg';
 
 export const Hero: React.FC<HeroProps> = ({ theme }) => {
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
+  const [isPortraitModalOpen, setIsPortraitModalOpen] = useState(false);
+  const [isVisualizerOpen, setIsVisualizerOpen] = useState(false);
 
   const handleCopyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
@@ -113,11 +119,8 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
         >
           <div className="flex items-center justify-center gap-3">
             <BrandLogo size="md" withGlow={true} className="hidden sm:inline-flex flex-shrink-0" />
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-stone-950 dark:text-white">
-              <span className="text-stone-900 dark:text-white">Md. Mehrab </span>
-              <span className="bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 dark:from-orange-400 dark:via-amber-300 dark:to-orange-400 bg-clip-text text-transparent drop-shadow-sm">
-                Hossain Khan
-              </span>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.08] text-stone-900 dark:text-white">
+              Md Mehrab Hossain Khan
             </h1>
           </div>
 
@@ -146,36 +149,49 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
           className="relative my-4 sm:my-6 flex flex-col items-center group"
         >
           {/* Pulsing Ethereal Atmospheric Aura (Light Orange Warmth) */}
-          <div className="absolute -inset-4 bg-gradient-to-b from-orange-500/30 via-amber-500/25 to-orange-400/30 rounded-[40px] blur-2xl opacity-80 group-hover:opacity-100 transition-all duration-700 animate-pulse pointer-events-none" />
+          <div className="absolute -inset-4 bg-gradient-to-b from-orange-500/30 via-amber-500/25 to-orange-400/30 rounded-[40px] blur-2xl opacity-80 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 animate-pulse pointer-events-none" />
 
           {/* Outer Orbital Rotating Hairline Ring */}
           <div className="absolute -inset-2 rounded-[38px] border border-orange-400/40 dark:border-orange-400/50 pointer-events-none" />
 
           {/* Executive Portrait Frame - Beautifully Centered with Tucked-in Shirt Clearly Visible */}
-          <div className="relative w-64 sm:w-72 md:w-80 aspect-[3/4] rounded-[32px] sm:rounded-[36px] p-1.5 sm:p-2 bg-gradient-to-b from-orange-400 via-amber-400 to-orange-500 shadow-2xl glow-orange">
+          {/* INTERACTIVE MOUSE HOVER ENLARGE EFFECT: Scales up noticeably on mouse hover */}
+          <motion.div
+            whileHover={{ scale: 1.22, y: -12 }}
+            transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+            onClick={() => setIsPortraitModalOpen(true)}
+            className="relative w-64 sm:w-72 md:w-80 aspect-[3/4] rounded-[32px] sm:rounded-[36px] p-1.5 sm:p-2 bg-gradient-to-b from-orange-400 via-amber-400 to-orange-500 shadow-2xl hover:shadow-[0_25px_60px_rgba(249,115,22,0.5)] glow-orange cursor-pointer z-30 transition-shadow duration-500 group/pic"
+            title="Hover to Enlarge • Click for Fullscreen HD View"
+          >
             <div className="w-full h-full rounded-[26px] sm:rounded-[30px] overflow-hidden border-2 sm:border-3 border-stone-950 bg-stone-950 relative shadow-inner">
               <img
                 src={OFFICIAL_PROFILE_IMAGE}
-                alt="Md. Mehrab Hossain Khan - Executive Portrait with Tucked-in Shirt"
-                className="w-full h-full object-cover object-[center_35%] select-none pointer-events-none transform group-hover:scale-103 transition-transform duration-700"
+                alt="Md Mehrab Hossain Khan - Executive Portrait with Tucked-in Shirt"
+                className="w-full h-full object-cover object-[center_35%] select-none pointer-events-none transform scale-100 group-hover/pic:scale-108 transition-transform duration-500 ease-out"
                 referrerPolicy="no-referrer"
                 loading="eager"
                 draggable={false}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10 pointer-events-none" />
               
+              {/* Floating Magnified Indicator on Mouse Hover */}
+              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-orange-300 text-[10px] font-mono font-bold flex items-center gap-1 border border-orange-400/40 opacity-0 group-hover/pic:opacity-100 transition-opacity duration-300 shadow-lg pointer-events-none">
+                <Maximize2 className="w-3 h-3 text-orange-400 animate-pulse" />
+                <span>Enlarged • Click for HD</span>
+              </div>
+
               {/* Elegant Tucked-in Profile Caption Tag */}
               <div className="absolute bottom-2.5 sm:bottom-3 inset-x-2.5 sm:inset-x-3 py-1.5 px-3 rounded-2xl bg-black/65 backdrop-blur-md border border-white/20 flex items-center justify-between text-white shadow-lg pointer-events-none">
                 <div className="flex items-center gap-1.5 truncate">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0" />
-                  <span className="text-[11px] sm:text-xs font-bold tracking-tight truncate">Md. Mehrab Hossain Khan</span>
+                  <span className="text-[11px] sm:text-xs font-bold tracking-tight truncate">Md Mehrab Hossain Khan</span>
                 </div>
                 <span className="text-[9px] sm:text-[10px] font-mono text-orange-300 font-bold uppercase tracking-wider flex-shrink-0 pl-1">
                   UIU Mariner CFO
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* ============================================================= */}
           {/* LARGE MK BRAND LOGO (Positioned Prominently Under Main Profile) */}
@@ -280,6 +296,19 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
           >
             <span>Explore Engineered Projects</span>
             <ArrowRight className="w-4 h-4" />
+          </motion.button>
+
+          {/* Interactive System & Robotics Visualizer Button (As Explicitly Requested) */}
+          <motion.button
+            id="hero-visualizer-btn"
+            onClick={() => setIsVisualizerOpen(true)}
+            whileHover={{ scale: 1.08, y: -3 }}
+            whileTap={{ scale: 0.94 }}
+            className="px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 hover:from-amber-400 hover:to-orange-400 text-white shadow-xl shadow-amber-500/25 flex items-center gap-2 cursor-pointer btn-popup border border-amber-300/40"
+            title="Open Interactive System Telemetry Visualizer"
+          >
+            <Activity className="w-4 h-4 text-white animate-pulse" />
+            <span>Interactive System Visualizer</span>
           </motion.button>
 
           {/* Pop-Up Button: Copy Email with Confetti */}
@@ -488,6 +517,20 @@ export const Hero: React.FC<HeroProps> = ({ theme }) => {
         </motion.div>
 
       </div>
+
+      {/* Fullscreen HD Portrait Modal with Zoom Controls */}
+      <PortraitModal
+        isOpen={isPortraitModalOpen}
+        onClose={() => setIsPortraitModalOpen(false)}
+        theme={theme}
+      />
+
+      {/* Interactive System & Robotics Telemetry Visualizer HUD */}
+      <InteractiveSystemVisualizer
+        isOpen={isVisualizerOpen}
+        onClose={() => setIsVisualizerOpen(false)}
+        theme={theme}
+      />
     </section>
   );
 };
